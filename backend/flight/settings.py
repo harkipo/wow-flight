@@ -25,9 +25,11 @@ SECRET_KEY = ')fse3gpy^o3s4mjsgp$)pqx-gr-d%tkp9g#6_ja-+wgwobl(f1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS=['*']
 
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'app',
 
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -76,27 +80,27 @@ WSGI_APPLICATION = 'flight.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-DATABASES = {                     # Uncomment if want to use mysql
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'robotics',
-        'USER': 'harshit',
-        'PASSWORD':'hehehehe',
-        'HOST': '',
-        'PORT': '',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-}
+
+
+# DATABASES = {                     # Uncomment if want to use mysql
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'dbName',
+#         'USER': 'username',
+#         'PASSWORD':'password',
+#         'HOST': '',
+#         'PORT': '',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+# }
+# }
 
 
 
@@ -139,9 +143,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-REST_FRAMEWORK = {
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.TokenAuthentication',
-   ),
- 
-}
