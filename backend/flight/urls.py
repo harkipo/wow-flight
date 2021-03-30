@@ -6,12 +6,11 @@ from django.conf.urls.static import static
 from app.views import *
 
 
-router = DefaultRouter()
-# router.register(r'ingredient', IngredientViewSet, basename='ingredient_view')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('flight/', include('app.urls')),
+    path('', include('app.urls')),
 ]
 
 if settings.DEBUG:
